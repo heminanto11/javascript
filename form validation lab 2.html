@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Form Validation</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript">
+		function validateForm(e)
+		{
+			e.preventDefault();
+			var regName=/^[a-zA-Z\s]{3,}$/;
+			var regEmail=/^[a-zA-Z0-9_\-\.]+@[a-z]+[\.][a-z]{2,3}$/;
+			var regPhone=/^[0-9]{10}$/;
+			var regPassword=/^[A-Za-z0-9]{7,23}$/;
+
+			var name=document.getElementById('name').value.trim();
+			var e_mail= document.getElementById('email').value.toLowerCase().trim();
+			var phone= document.getElementById('phone').value.trim();
+			var password=document.getElementById('password').value.trim();
+			if(!regName.test(name))
+			{
+				document.getElementById('nameErr').innerHTML='Please enter a valid name';
+				document.getElementById('name').focus();
+			}
+
+			if(!regEmail.test(e_mail))
+			{
+				document.getElementById('emailErr').innerHTML='Please Enter a valid email.';
+				document.getElementById('email').focus();
+			}
+			if(!regPhone.test(phone))
+			{
+				document.getElementById('phoneErr').innerHTML='Please Enter a valid Phone Number';
+				document.getElementById('phone').focus();
+			}
+			if(!regPassword.test(password))
+			{
+				document.getElementById('passErr').innerHTML='Please Enter a valid password';
+				document.getElementById('password').focus();
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<form name="signUpForm" onsubmit="validateForm(event)">
+	<h1> Form Validation</h1>
+	<div>
+		<label>Enter the name</label><br>
+		<input type="text" id="name" placeholder="Name" >
+		<div id="nameErr"></div><br>
+	</div>
+	<div>
+		<label>Enter the Email</label><br>
+		<input type="text" id="email" placeholder="Email ID">
+		<div id="emailErr"></div><br>
+	</div>
+	<div>
+		<label>Enter the Phone Number</label><br>
+		<input type="text" id="phone" placeholder="Ph. No"><br>
+		<div id="phoneErr"></div><br>
+	</div>
+	<div>
+		<label>Enter the Password</label><br>
+		<input type="password" id="password" placeholder="Password">
+		<div id="passErr"></div><br>
+	</div><div>
+		<button type="submit">Sign Up</button>
+	</div>
+</form>
+</body>
+</html>
